@@ -33,6 +33,7 @@ Sub フォルダを再帰的に処理(folderPath As String, outputWs As Worksheet)
     Set FSO = CreateObject("Scripting.FileSystemObject")
     Set Folder = FSO.GetFolder(folderPath)
 
+
     ' フォルダ内のExcelファイルを処理
     Call ProcessFilesInFolder(Folder.path, outputWs)
 
