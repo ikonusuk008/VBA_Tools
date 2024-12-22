@@ -1,30 +1,30 @@
-Attribute VB_Name = "��w�艺��"
-Sub ��w�艺��M()
-    Const �J�n�s As Long = 2
+Attribute VB_Name = "列指定下埋"
+Sub 列指定下埋M()
+    Const 開始行 As Long = 2
 
-    Dim �Ώۗ� As Long
-    Dim �ŏI�s As Long
-    Dim ���݂̒l As String
+    Dim 対象列 As Long
+    Dim 最終行 As Long
+    Dim 現在の値 As String
     Dim i As Long
 
-    ' ��ԍ������[�U�[�ɓ��͂�����
-    �Ώۗ� = InputBox("��ԍ�����͂��Ă��������i��FA��Ȃ�1�AB��Ȃ�2�j")
+    ' 列番号をユーザーに入力させる
+    対象列 = InputBox("列番号を入力してください（例：A列なら1、B列なら2）")
 
-    ' �����ȗ�ԍ������͂��ꂽ�ꍇ�A�������I��
-    If �Ώۗ� < 1 Then Exit Sub
+    ' 無効な列番号が入力された場合、処理を終了
+    If 対象列 < 1 Then Exit Sub
 
-    ' �ŏI�s���擾
-    �ŏI�s = Cells(Rows.count, �Ώۗ�).End(xlUp).row
+    ' 最終行を取得
+    最終行 = Cells(Rows.count, 対象列).End(xlUp).row
 
-    ' �����̌��݂̒l��ݒ�
-    ���݂̒l = Cells(�J�n�s, �Ώۗ�).Value
+    ' 初期の現在の値を設定
+    現在の値 = Cells(開始行, 対象列).Value
 
-    ' �����ߏ��������s
-    For i = �J�n�s To �ŏI�s
-        If Cells(i, �Ώۗ�).Value <> "" Then
-            ���݂̒l = Cells(i, �Ώۗ�).Value
+    ' 下埋め処理を実行
+    For i = 開始行 To 最終行
+        If Cells(i, 対象列).Value <> "" Then
+            現在の値 = Cells(i, 対象列).Value
         End If
-        Cells(i, �Ώۗ�).Value = ���݂̒l
+        Cells(i, 対象列).Value = 現在の値
     Next i
 End Sub
 

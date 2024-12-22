@@ -1,49 +1,49 @@
-Attribute VB_Name = "Excelƒtƒ@ƒCƒ‹‚ğŒ‹‡"
-' ƒOƒ[ƒoƒ‹•Ï”‚ÅsƒJƒEƒ“ƒg‚ğŠÇ—
+Attribute VB_Name = "Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’çµåˆ"
+' ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã§è¡Œã‚«ã‚¦ãƒ³ãƒˆã‚’ç®¡ç†
 Dim r As Long
 
-Sub Excelƒtƒ@ƒCƒ‹‚ğŒ‹‡M()
+Sub Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’çµåˆM()
     Dim folderPath As String
     Dim outputWb As Workbook
     Dim outputWs As Worksheet
     
-    ' ‰Šú‰»FÅ‰‚Ìƒf[ƒ^‚Ì‘‚«‚İŠJns‚ğw’è
+    ' åˆæœŸåŒ–ï¼šæœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿é–‹å§‹è¡Œã‚’æŒ‡å®š
     r = 1
     
-    ' ƒtƒHƒ‹ƒ_‚ÌƒpƒX‚ğw’è
-    folderPath = "C:\YourFolderPath\" ' â‘ÎƒpƒX‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢
+    ' ãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ‘ã‚¹ã‚’æŒ‡å®š
+    folderPath = "C:\YourFolderPath\" ' çµ¶å¯¾ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ãã ã•ã„
     
-    ' o—Íæ‚Ìƒ[ƒNƒuƒbƒN‚ÆƒV[ƒg‚ğw’è
-    Set outputWb = Workbooks.Open("C:\YourOutputWorkbookPath\OutputWorkbook.xlsx") ' o—Íæ‚Ìƒ[ƒNƒuƒbƒN‚ğw’è
-    Set outputWs = outputWb.sheets("Sheet1") ' o—Íæ‚ÌƒV[ƒg‚ğw’è
+    ' å‡ºåŠ›å…ˆã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã¨ã‚·ãƒ¼ãƒˆã‚’æŒ‡å®š
+    Set outputWb = Workbooks.Open("C:\YourOutputWorkbookPath\OutputWorkbook.xlsx") ' å‡ºåŠ›å…ˆã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã‚’æŒ‡å®š
+    Set outputWs = outputWb.sheets("Sheet1") ' å‡ºåŠ›å…ˆã®ã‚·ãƒ¼ãƒˆã‚’æŒ‡å®š
     
-    ' ƒTƒuƒtƒHƒ‹ƒ_’Tõ‚àÄ‹A“I‚Éˆ—‚·‚é‚½‚ß‚ÉAƒƒCƒ“ƒtƒHƒ‹ƒ_‚©‚çŠJn
+    ' ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€æ¢ç´¢ã‚‚å†å¸°çš„ã«å‡¦ç†ã™ã‚‹ãŸã‚ã«ã€ãƒ¡ã‚¤ãƒ³ãƒ•ã‚©ãƒ«ãƒ€ã‹ã‚‰é–‹å§‹
     Call ProcessFolderRecursively(folderPath, outputWs)
     
-    MsgBox "ƒf[ƒ^‚ÌŒ‹‡‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation
+    MsgBox "ãƒ‡ãƒ¼ã‚¿ã®çµåˆãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation
 End Sub
 
-Sub ƒtƒHƒ‹ƒ_‚ğÄ‹A“I‚Éˆ—(folderPath As String, outputWs As Worksheet)
+Sub ãƒ•ã‚©ãƒ«ãƒ€ã‚’å†å¸°çš„ã«å‡¦ç†(folderPath As String, outputWs As Worksheet)
     Dim fileName As String
     Dim FSO As Object
     Dim Folder As Object
     Dim SubFolder As Object
 
-    ' FileSystemObject‚ğg—p‚µ‚ÄƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹‚ÆƒTƒuƒtƒHƒ‹ƒ_‚ğˆ—
+    ' FileSystemObjectã‚’ä½¿ç”¨ã—ã¦ãƒ•ã‚©ãƒ«ãƒ€å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚’å‡¦ç†
     Set FSO = CreateObject("Scripting.FileSystemObject")
     Set Folder = FSO.GetFolder(folderPath)
 
 
-    ' ƒtƒHƒ‹ƒ_“à‚ÌExcelƒtƒ@ƒCƒ‹‚ğˆ—
+    ' ãƒ•ã‚©ãƒ«ãƒ€å†…ã®Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡¦ç†
     Call ProcessFilesInFolder(Folder.path, outputWs)
 
-    ' ƒTƒuƒtƒHƒ‹ƒ_‚ğÄ‹A“I‚Éˆ—
+    ' ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚’å†å¸°çš„ã«å‡¦ç†
     For Each SubFolder In Folder.SubFolders
         Call ProcessFolderRecursively(SubFolder.path, outputWs)
     Next SubFolder
 End Sub
 
-Sub ƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹‚ğˆ—(folderPath As String, outputWs As Worksheet)
+Sub ãƒ•ã‚©ãƒ«ãƒ€å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡¦ç†(folderPath As String, outputWs As Worksheet)
     Dim fileName As String
     Dim wb As Workbook
     Dim ws As Worksheet
@@ -51,17 +51,17 @@ Sub ƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹‚ğˆ—(folderPath As String, outputWs As Worksheet)
     Dim i As Long
     Dim sheetExists As Boolean
 
-    ' ƒtƒHƒ‹ƒ_“à‚ÌExcelƒtƒ@ƒCƒ‹‚ğ‡”Ô‚ÉŠJ‚­
+    ' ãƒ•ã‚©ãƒ«ãƒ€å†…ã®Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’é †ç•ªã«é–‹ã
     fileName = Dir(folderPath & "\*.xls*")
 
     Do While fileName <> ""
-        ' 'AAA' ‚ğŠÜ‚Şƒtƒ@ƒCƒ‹–¼‚ğƒ`ƒFƒbƒN
+        ' 'AAA' ã‚’å«ã‚€ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ãƒã‚§ãƒƒã‚¯
         If InStr(fileName, "AAA") > 0 Then
-            ' ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
             Set wb = Workbooks.Open(folderPath & "\" & fileName)
             sheetExists = False
             
-            ' "AAA" ‚Æ‚¢‚¤–¼‘O‚ÌƒV[ƒg‚ª‘¶İ‚·‚é‚©‚ğŠm”F
+            ' "AAA" ã¨ã„ã†åå‰ã®ã‚·ãƒ¼ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹ã‚’ç¢ºèª
             On Error Resume Next
             Set ws = wb.sheets("AAA")
             If Not ws Is Nothing Then
@@ -69,29 +69,29 @@ Sub ƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹‚ğˆ—(folderPath As String, outputWs As Worksheet)
             End If
             On Error GoTo 0
 
-            ' ƒV[ƒg‚ª‘¶İ‚·‚éê‡Aƒf[ƒ^‚ğˆ—
+            ' ã‚·ãƒ¼ãƒˆãŒå­˜åœ¨ã™ã‚‹å ´åˆã€ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†
             If sheetExists Then
-                ' ƒf[ƒ^‚ÌÅIs‚ğæ“¾
+                ' ãƒ‡ãƒ¼ã‚¿ã®æœ€çµ‚è¡Œã‚’å–å¾—
                 lastRow = ws.Cells(ws.Rows.count, "A").End(xlUp).row
 
-                ' Šes‚ğ‡”Ô‚É‘‚«‚Ş
-                For i = 2 To lastRow ' A2‚©‚çÅIs‚Ü‚Å‚ğˆ—iƒwƒbƒ_[s‚Íœ‚­j
-                    outputWs.Cells(r, 1).Value = ws.Cells(i, 1).Value ' ŠÔ‚ğƒRƒs[
-                    outputWs.Cells(r, 2).Value = ws.Cells(i, 2).Value ' –¼‘O‚ğƒRƒs[
-                    r = r + 1 ' Ÿ‚Ì‘‚«‚İs‚Ö
+                ' å„è¡Œã‚’é †ç•ªã«æ›¸ãè¾¼ã‚€
+                For i = 2 To lastRow ' A2ã‹ã‚‰æœ€çµ‚è¡Œã¾ã§ã‚’å‡¦ç†ï¼ˆãƒ˜ãƒƒãƒ€ãƒ¼è¡Œã¯é™¤ãï¼‰
+                    outputWs.Cells(r, 1).Value = ws.Cells(i, 1).Value ' æ™‚é–“ã‚’ã‚³ãƒ”ãƒ¼
+                    outputWs.Cells(r, 2).Value = ws.Cells(i, 2).Value ' åå‰ã‚’ã‚³ãƒ”ãƒ¼
+                    r = r + 1 ' æ¬¡ã®æ›¸ãè¾¼ã¿è¡Œã¸
                 Next i
             Else
-                ' ƒV[ƒg‚ª‘¶İ‚µ‚È‚¢ê‡Aƒtƒ@ƒCƒ‹–¼‚Æ "ƒV[ƒg–³‚µ" ‚ğ‹L˜^
+                ' ã‚·ãƒ¼ãƒˆãŒå­˜åœ¨ã—ãªã„å ´åˆã€ãƒ•ã‚¡ã‚¤ãƒ«åã¨ "ã‚·ãƒ¼ãƒˆç„¡ã—" ã‚’è¨˜éŒ²
                 outputWs.Cells(r, 1).Value = fileName
-                outputWs.Cells(r, 2).Value = "ƒV[ƒg–³‚µ"
+                outputWs.Cells(r, 2).Value = "ã‚·ãƒ¼ãƒˆç„¡ã—"
                 r = r + 1
             End If
 
-            ' ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
             wb.Close SaveChanges:=False
         End If
 
-        ' Ÿ‚Ìƒtƒ@ƒCƒ‹‚Ö
+        ' æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¸
         fileName = Dir
     Loop
 End Sub

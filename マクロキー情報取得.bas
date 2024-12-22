@@ -1,77 +1,77 @@
-Attribute VB_Name = "ƒ}ƒNƒƒL[î•ñæ“¾"
-Sub ƒ}ƒNƒƒL[î•ñæ“¾M()
-    ' ƒV[ƒguƒL[v‚ğ‘I‘ğ
+Attribute VB_Name = "ãƒã‚¯ãƒ­ã‚­ãƒ¼æƒ…å ±å–å¾—"
+Sub ãƒã‚¯ãƒ­ã‚­ãƒ¼æƒ…å ±å–å¾—M()
+    ' ã‚·ãƒ¼ãƒˆã€Œã‚­ãƒ¼ã€ã‚’é¸æŠ
     On Error Resume Next
-    sheets("ƒL[ˆê——").Select
+    sheets("ã‚­ãƒ¼ä¸€è¦§").Select
     If Err.Number <> 0 Then
-        MsgBox "ƒV[ƒguƒL[v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñBƒV[ƒg–¼‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbCritical
+        MsgBox "ã‚·ãƒ¼ãƒˆã€Œã‚­ãƒ¼ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚ã‚·ãƒ¼ãƒˆåã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚", vbCritical
         Exit Sub
     End If
     On Error GoTo 0
 
-    ' •Ï”‚Ì‰Šú‰»
-    Dim ƒpƒX As String
-    Dim ƒtƒ@ƒCƒ‹”Ô† As Integer
-    Dim sƒf[ƒ^ As String
-    Dim s”Ô† As Integer
-    s”Ô† = 1
-    Dim ˆê”z—ñ() As String
-    Dim ƒ‚ƒWƒ…[ƒ‹–¼ As String
-    Dim ƒL[–¼ As String
-    Dim ƒRƒ“ƒ|[ƒlƒ“ƒg As Object
+    ' å¤‰æ•°ã®åˆæœŸåŒ–
+    Dim ãƒ‘ã‚¹ As String
+    Dim ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå· As Integer
+    Dim è¡Œãƒ‡ãƒ¼ã‚¿ As String
+    Dim è¡Œç•ªå· As Integer
+    è¡Œç•ªå· = 1
+    Dim ä¸€æ™‚é…åˆ—() As String
+    Dim ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å As String
+    Dim ã‚­ãƒ¼å As String
+    Dim ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ As Object
     
-    ' ’è”‚Ì’è‹`
-    Const ‘®«1 As String = "Attribute "
-    Const ‘®«2 As String = "VB_Invoke_Func ="
-    Const ˆêƒtƒ@ƒCƒ‹ As String = "Temp1.bas"
+    ' å®šæ•°ã®å®šç¾©
+    Const å±æ€§1 As String = "Attribute "
+    Const å±æ€§2 As String = "VB_Invoke_Func ="
+    Const ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« As String = "Temp1.bas"
     
-    ' ƒpƒX‚Ìæ“¾
-    ƒpƒX = ThisWorkbook.path & "\"
+    ' ãƒ‘ã‚¹ã®å–å¾—
+    ãƒ‘ã‚¹ = ThisWorkbook.path & "\"
     
-    ' VBProject‚©‚çŠeƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾‚µAˆ—
+    ' VBProjectã‹ã‚‰å„ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ã—ã€å‡¦ç†
     With ThisWorkbook.VBProject
-        For Each ƒRƒ“ƒ|[ƒlƒ“ƒg In .VBComponents
-            ' ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğˆêƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒGƒNƒXƒ|[ƒg
-            .VBComponents(ƒRƒ“ƒ|[ƒlƒ“ƒg.name).Export fileName:=ƒpƒX & ˆêƒtƒ@ƒCƒ‹
-            ƒtƒ@ƒCƒ‹”Ô† = FreeFile()
-            Open ƒpƒX & ˆêƒtƒ@ƒCƒ‹ For Input As #ƒtƒ@ƒCƒ‹”Ô†
+        For Each ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ In .VBComponents
+            ' ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ
+            .VBComponents(ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ.name).Export fileName:=ãƒ‘ã‚¹ & ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«
+            ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå· = FreeFile()
+            Open ãƒ‘ã‚¹ & ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« For Input As #ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
             
-            ' ƒtƒ@ƒCƒ‹“à—e‚ğ“Ç‚İæ‚è
-            While Not EOF(ƒtƒ@ƒCƒ‹”Ô†)
-                Line Input #ƒtƒ@ƒCƒ‹”Ô†, sƒf[ƒ^
+            ' ãƒ•ã‚¡ã‚¤ãƒ«å†…å®¹ã‚’èª­ã¿å–ã‚Š
+            While Not EOF(ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·)
+                Line Input #ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·, è¡Œãƒ‡ãƒ¼ã‚¿
                 
-                ' Sub–¼‚ğæ“¾
-                If InStr(1, sƒf[ƒ^, "Sub", vbTextCompare) = 1 Then
-                    ƒ‚ƒWƒ…[ƒ‹–¼ = Mid$(sƒf[ƒ^, InStr(sƒf[ƒ^, "Sub") + 4)
+                ' Subåã‚’å–å¾—
+                If InStr(1, è¡Œãƒ‡ãƒ¼ã‚¿, "Sub", vbTextCompare) = 1 Then
+                    ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å = Mid$(è¡Œãƒ‡ãƒ¼ã‚¿, InStr(è¡Œãƒ‡ãƒ¼ã‚¿, "Sub") + 4)
                 End If
                 
-                ' Attributeî•ñ‚ğæ“¾
-                If InStr(sƒf[ƒ^, ‘®«1) = 1 And InStr(sƒf[ƒ^, ‘®«2) > 0 Then
-                    ReDim Preserve ˆê”z—ñ(s”Ô†)
-                    ƒL[–¼ = ":" & Mid$(sƒf[ƒ^, InStrRev(sƒf[ƒ^, "=") + 3, 1)
-                    ˆê”z—ñ(s”Ô†) = ƒ‚ƒWƒ…[ƒ‹–¼ & ƒL[–¼
+                ' Attributeæƒ…å ±ã‚’å–å¾—
+                If InStr(è¡Œãƒ‡ãƒ¼ã‚¿, å±æ€§1) = 1 And InStr(è¡Œãƒ‡ãƒ¼ã‚¿, å±æ€§2) > 0 Then
+                    ReDim Preserve ä¸€æ™‚é…åˆ—(è¡Œç•ªå·)
+                    ã‚­ãƒ¼å = ":" & Mid$(è¡Œãƒ‡ãƒ¼ã‚¿, InStrRev(è¡Œãƒ‡ãƒ¼ã‚¿, "=") + 3, 1)
+                    ä¸€æ™‚é…åˆ—(è¡Œç•ªå·) = ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å & ã‚­ãƒ¼å
                     
-                    ' Œ‹‰Ê‚ğƒV[ƒg‚Éo—Í
-                    Cells(s”Ô† + 1, 1) = ƒ‚ƒWƒ…[ƒ‹–¼
-                    Cells(s”Ô† + 1, 2) = Replace(ƒL[–¼, ":", "")
-                    s”Ô† = s”Ô† + 1
-                    ƒ‚ƒWƒ…[ƒ‹–¼ = ""
+                    ' çµæœã‚’ã‚·ãƒ¼ãƒˆã«å‡ºåŠ›
+                    Cells(è¡Œç•ªå· + 1, 1) = ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å
+                    Cells(è¡Œç•ªå· + 1, 2) = Replace(ã‚­ãƒ¼å, ":", "")
+                    è¡Œç•ªå· = è¡Œç•ªå· + 1
+                    ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å = ""
                 End If
-                sƒf[ƒ^ = ""
+                è¡Œãƒ‡ãƒ¼ã‚¿ = ""
             Wend
             
-            ' ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚Äíœ
-            Close #ƒtƒ@ƒCƒ‹”Ô†
-            Kill ƒpƒX & ˆêƒtƒ@ƒCƒ‹
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã¦å‰Šé™¤
+            Close #ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
+            Kill ãƒ‘ã‚¹ & ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«
         Next
     End With
     
-    ' ‘®İ’è
-    ƒL[ƒŠƒXƒg‘®İ’è
+    ' æ›¸å¼è¨­å®š
+    ã‚­ãƒ¼ãƒªã‚¹ãƒˆæ›¸å¼è¨­å®š
 End Sub
 
-Sub ƒL[ƒŠƒXƒg‘®İ’è()
-    ' ƒwƒbƒ_•”•ª‚Ì‘®İ’è
+Sub ã‚­ãƒ¼ãƒªã‚¹ãƒˆæ›¸å¼è¨­å®š()
+    ' ãƒ˜ãƒƒãƒ€éƒ¨åˆ†ã®æ›¸å¼è¨­å®š
     With Range("A1:C1").Interior
         .Pattern = xlSolid
         .PatternColorIndex = xlAutomatic
@@ -80,27 +80,27 @@ Sub ƒL[ƒŠƒXƒg‘®İ’è()
         .PatternTintAndShade = 0
     End With
     
-    ' ƒtƒŠ[ƒYƒyƒCƒ“‚Ìİ’è
+    ' ãƒ•ãƒªãƒ¼ã‚ºãƒšã‚¤ãƒ³ã®è¨­å®š
     Range("A2").Select
     ActiveWindow.FreezePanes = True
     
-    ' ƒI[ƒgƒtƒBƒ‹ƒ^‚Ìİ’è
+    ' ã‚ªãƒ¼ãƒˆãƒ•ã‚£ãƒ«ã‚¿ã®è¨­å®š
     Cells.Select
     Selection.AutoFilter
     
-    ' •\¦”{—¦‚Ìİ’è
+    ' è¡¨ç¤ºå€ç‡ã®è¨­å®š
     ActiveWindow.Zoom = 75
     
-    ' —ñ•‚Ìİ’è
+    ' åˆ—å¹…ã®è¨­å®š
     Columns("A:A").ColumnWidth = 60
     Columns("B:B").ColumnWidth = 10
     
-    ' ƒwƒbƒ_‚Ìİ’è
-    Range("A1").Value = "ƒ‚ƒWƒ…[ƒ‹–¼"
-    Range("B1").Value = "ƒL[–¼"
-    Range("C1").Value = "ƒL[Œó•â"
+    ' ãƒ˜ãƒƒãƒ€ã®è¨­å®š
+    Range("A1").Value = "ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å"
+    Range("B1").Value = "ã‚­ãƒ¼å"
+    Range("C1").Value = "ã‚­ãƒ¼å€™è£œ"
     
-    ' Å‰‚ÌƒZƒ‹‚ğ‘I‘ğ
+    ' æœ€åˆã®ã‚»ãƒ«ã‚’é¸æŠ
     Range("A1").Select
 End Sub
 

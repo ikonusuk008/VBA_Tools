@@ -1,58 +1,58 @@
-Attribute VB_Name = "ƒtƒ@ƒCƒ‹ƒpƒX•ª‰ğˆ—"
-Sub ƒtƒ@ƒCƒ‹ƒpƒX•ª‰ğˆ—M()
-    Dim ÅIs As Long
+Attribute VB_Name = "ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹åˆ†è§£å‡¦ç†"
+Sub ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹åˆ†è§£å‡¦ç†M()
+    Dim æœ€çµ‚è¡Œ As Long
     Dim i As Long
-    Dim ƒtƒ@ƒCƒ‹ƒpƒX As String
-    Dim ƒpƒX•”•ª() As String
-    Dim ƒtƒ@ƒCƒ‹–¼ As String
-    Dim Šg’£q As String
+    Dim ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ As String
+    Dim ãƒ‘ã‚¹éƒ¨åˆ†() As String
+    Dim ãƒ•ã‚¡ã‚¤ãƒ«å As String
+    Dim æ‹¡å¼µå­ As String
     Dim j As Long
-    Dim ƒf[ƒ^ As Variant
-    Dim Œ‹‰Ê As Variant
+    Dim ãƒ‡ãƒ¼ã‚¿ As Variant
+    Dim çµæœ As Variant
 
-    ' €–Ú–¼‚ğİ’è
-    Cells(1, 1).Value = "ƒtƒ@ƒCƒ‹ƒpƒX"
-    Cells(1, 2).Value = "ƒtƒ@ƒCƒ‹–¼"
-    Cells(1, 3).Value = "Šg’£q"
+    ' é …ç›®åã‚’è¨­å®š
+    Cells(1, 1).Value = "ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹"
+    Cells(1, 2).Value = "ãƒ•ã‚¡ã‚¤ãƒ«å"
+    Cells(1, 3).Value = "æ‹¡å¼µå­"
 
-    ' A—ñ‚ÌÅIs‚ğæ“¾
-    ÅIs = Cells(Rows.count, 1).End(xlUp).row
+    ' Aåˆ—ã®æœ€çµ‚è¡Œã‚’å–å¾—
+    æœ€çµ‚è¡Œ = Cells(Rows.count, 1).End(xlUp).row
 
-    ' 2s–Ú‚©‚çÅIs‚Ü‚Åƒ‹[ƒv
-    For i = 2 To ÅIs
-        ' A—ñ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾
-        ƒtƒ@ƒCƒ‹ƒpƒX = Cells(i, 1).Value
+    ' 2è¡Œç›®ã‹ã‚‰æœ€çµ‚è¡Œã¾ã§ãƒ«ãƒ¼ãƒ—
+    For i = 2 To æœ€çµ‚è¡Œ
+        ' Aåˆ—ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
+        ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ = Cells(i, 1).Value
         
-        ' ƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ª‰ğ
-        ƒpƒX•”•ª = Split(ƒtƒ@ƒCƒ‹ƒpƒX, "\")
+        ' ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’åˆ†è§£
+        ãƒ‘ã‚¹éƒ¨åˆ† = Split(ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹, "\")
         
-        ' ƒtƒ@ƒCƒ‹–¼‚ÆŠg’£q‚ğæ“¾
-        ƒtƒ@ƒCƒ‹–¼ = ƒpƒX•”•ª(UBound(ƒpƒX•”•ª))
-        Šg’£q = Split(ƒtƒ@ƒCƒ‹–¼, ".")(1)
+        ' ãƒ•ã‚¡ã‚¤ãƒ«åã¨æ‹¡å¼µå­ã‚’å–å¾—
+        ãƒ•ã‚¡ã‚¤ãƒ«å = ãƒ‘ã‚¹éƒ¨åˆ†(UBound(ãƒ‘ã‚¹éƒ¨åˆ†))
+        æ‹¡å¼µå­ = Split(ãƒ•ã‚¡ã‚¤ãƒ«å, ".")(1)
         
-        ' Œ‹‰Ê‚ğƒV[ƒg‚É‘‚«‚Ş
-        Cells(i, 2).Value = ƒtƒ@ƒCƒ‹–¼
-        Cells(i, 3).Value = Šg’£q
+        ' çµæœã‚’ã‚·ãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚€
+        Cells(i, 2).Value = ãƒ•ã‚¡ã‚¤ãƒ«å
+        Cells(i, 3).Value = æ‹¡å¼µå­
         
-        ' ƒtƒHƒ‹ƒ_ŠK‘w‚ğ—ñ‚É•ªŠ„‚µ‚Äİ’è
-        For j = LBound(ƒpƒX•”•ª) To UBound(ƒpƒX•”•ª) - 1
+        ' ãƒ•ã‚©ãƒ«ãƒ€éšå±¤ã‚’åˆ—ã«åˆ†å‰²ã—ã¦è¨­å®š
+        For j = LBound(ãƒ‘ã‚¹éƒ¨åˆ†) To UBound(ãƒ‘ã‚¹éƒ¨åˆ†) - 1
             Cells(1, 4 + j).Value = "F" & (j + 1)
-            Cells(i, 4 + j).Value = ƒpƒX•”•ª(j)
+            Cells(i, 4 + j).Value = ãƒ‘ã‚¹éƒ¨åˆ†(j)
         Next j
     Next i
 
-    ' A—ñ‚ğƒŠƒ“ƒN‚Éİ’è
-    For i = 2 To ÅIs
+    ' Aåˆ—ã‚’ãƒªãƒ³ã‚¯ã«è¨­å®š
+    For i = 2 To æœ€çµ‚è¡Œ
         Cells(i, 1).Hyperlinks.Add Anchor:=Cells(i, 1), Address:=Cells(i, 1).Value, TextToDisplay:=Cells(i, 1).Value
     Next i
 
-    ' €–Ús‚ğŒÅ’è
+    ' é …ç›®è¡Œã‚’å›ºå®š
     If ActiveWindow.FreezePanes = False Then
         Rows("2:2").Select
         ActiveWindow.FreezePanes = True
     End If
 
-    ' ‘S‘Ì‚ğƒtƒBƒ‹ƒ^
+    ' å…¨ä½“ã‚’ãƒ•ã‚£ãƒ«ã‚¿
     If ActiveSheet.AutoFilterMode = False Then
         Cells(1, 1).CurrentRegion.AutoFilter
     End If

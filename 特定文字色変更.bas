@@ -1,5 +1,5 @@
-Attribute VB_Name = "“Á’è•¶šF•ÏX"
-Sub “Á’è•¶šF•ÏXM()
+Attribute VB_Name = "ç‰¹å®šæ–‡å­—è‰²å¤‰æ›´"
+Sub ç‰¹å®šæ–‡å­—è‰²å¤‰æ›´M()
 
     Dim rng As Range
     Dim ptr As Integer
@@ -8,18 +8,18 @@ Sub “Á’è•¶šF•ÏXM()
     Const dataType As Long = 23
 
     Dim colorChangeText As String
-    colorChangeText = InputBox("F‚ğ•ÏX‚·‚éƒeƒLƒXƒg‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢")
+    colorChangeText = InputBox("è‰²ã‚’å¤‰æ›´ã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„")
 
     Dim colorIndex As String
-    colorIndex = InputBox("F”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", "Fİ’è", "3")
+    colorIndex = InputBox("è‰²ç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", "è‰²è¨­å®š", "3")
 
     Dim boldSetting As String
-    boldSetting = InputBox("‘¾š‚É‚µ‚Ü‚·‚©H (B/b‚Å‘¾š)", "‘¾šİ’è", " ")
+    boldSetting = InputBox("å¤ªå­—ã«ã—ã¾ã™ã‹ï¼Ÿ (B/bã§å¤ªå­—)", "å¤ªå­—è¨­å®š", " ")
 
     For Each rng In ActiveSheet.Cells.SpecialCells(xlCellTypeConstants, dataType)
         ptr = InStr(rng.Value, colorChangeText)
 
-        ' Whileƒ‹[ƒv‚ÅƒZƒ‹“à‚Ì•¶š—ñ‚ğ‚·‚×‚ÄŒ©‚Â‚¯‚é
+        ' Whileãƒ«ãƒ¼ãƒ—ã§ã‚»ãƒ«å†…ã®æ–‡å­—åˆ—ã‚’ã™ã¹ã¦è¦‹ã¤ã‘ã‚‹
         While ptr > 0
 
             rng.Characters(Start:=ptr, Length:=Len(colorChangeText)).Font.colorIndex = CInt(colorIndex)
@@ -28,7 +28,7 @@ Sub “Á’è•¶šF•ÏXM()
                 rng.Characters(Start:=ptr, Length:=Len(colorChangeText)).Font.Bold = True
             End If
 
-            ' Ÿ‚Ìˆê’v‚ğŒŸõ
+            ' æ¬¡ã®ä¸€è‡´ã‚’æ¤œç´¢
             ptr = InStr(ptr + Len(colorChangeText), rng.Value, colorChangeText)
 
         Wend

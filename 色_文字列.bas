@@ -1,58 +1,58 @@
-Attribute VB_Name = "�F_������"
-' # Excel�}�N���œ���̕�����̐F�Ƒ�����ύX������@
-' ## �͂��߂�
-' ���̃u���O�L���ł́AExcel�V�[�g���̓���̕�����̐F��ύX���A�K�v�ɉ����đ����ɂ���}�N���̍쐬���@��������܂��B<br>���[�U�[�́A�ύX�������e�L�X�g�A�F�A����ё����ݒ����̓{�b�N�X��ʂ��Ďw�肵�܂��B<br>
-' ## �F�Ƒ�����ύX����}�N��
-' ���̃}�N���́A���[�U�[����̓��͂��󂯎��A�V�[�g���̓���̕�����̐F�Ƒ����ݒ��ύX���܂��B<br>
+Attribute VB_Name = "色_文字列"
+' # Excelマクロで特定の文字列の色と太字を変更する方法
+' ## はじめに
+' このブログ記事では、Excelシート内の特定の文字列の色を変更し、必要に応じて太字にするマクロの作成方法を解説します。<br>ユーザーは、変更したいテキスト、色、および太字設定を入力ボックスを通じて指定します。<br>
+' ## 色と太字を変更するマクロ
+' このマクロは、ユーザーからの入力を受け取り、シート内の特定の文字列の色と太字設定を変更します。<br>
 ' <pre><code>
-Sub �F�Ƒ�����ύX����()
-Attribute �F�Ƒ�����ύX����.VB_ProcData.VB_Invoke_Func = "r\n14"
-    Const �f�[�^�^ As Long = 23
-    Dim �͈� As Range
-    Dim �F�ύX�e�L�X�g As String
-    Dim �F�C���f�b�N�X As String
-    Dim �����ݒ� As String
+Sub 色と太字を変更する()
+Attribute 色と太字を変更する.VB_ProcData.VB_Invoke_Func = "r\n14"
+    Const データ型 As Long = 23
+    Dim 範囲 As Range
+    Dim 色変更テキスト As String
+    Dim 色インデックス As String
+    Dim 太字設定 As String
     Dim rng As Range
     
-    ' ���[�U�[�ɕύX�������e�L�X�g����͂�����
-    �F�ύX�e�L�X�g = InputBox("�e�L�X�g����͂��Ă�������")
+    ' ユーザーに変更したいテキストを入力させる
+    色変更テキスト = InputBox("テキストを入力してください")
     
-    ' ���[�U�[�ɐF�C���f�b�N�X����͂�����i�f�t�H���g��3�j
-    �F�C���f�b�N�X = InputBox("�F����͂��Ă�������", "�F�ݒ�", "3")
+    ' ユーザーに色インデックスを入力させる（デフォルトは3）
+    色インデックス = InputBox("色を入力してください", "色設定", "3")
     
-    ' ���[�U�[�ɑ����ݒ����͂�����iB/b����͂���Ƒ����ɂȂ�j
-    �����ݒ� = InputBox("�e�L�X�g�𑾎��ɂ��܂����H (B/b����͂��Ă�������)", "�����ݒ�", " ")
+    ' ユーザーに太字設定を入力させる（B/bを入力すると太字になる）
+    太字設定 = InputBox("テキストを太字にしますか？ (B/bを入力してください)", "太字設定", " ")
     
-    ' �V�[�g���̒萔�Z����͈͂Ƃ��Đݒ�
-    Set �͈� = ActiveSheet.Cells.SpecialCells(xlCellTypeConstants, �f�[�^�^)
+    ' シート内の定数セルを範囲として設定
+    Set 範囲 = ActiveSheet.Cells.SpecialCells(xlCellTypeConstants, データ型)
     
-    ' �͈͓��̊e�Z���ɑ΂��ĐF�ύX�����s
-    For Each rng In �͈�
-        Call �F�ύX(rng, �F�ύX�e�L�X�g, �F�C���f�b�N�X, �����ݒ�)
+    ' 範囲内の各セルに対して色変更を実行
+    For Each rng In 範囲
+        Call 色変更(rng, 色変更テキスト, 色インデックス, 太字設定)
     Next rng
 End Sub
 ' </code></pre>
-' ## �F�ύX�T�u���[�`��
-' ���̃T�u���[�`���́A�w�肳�ꂽ�͈͓��̓���̕�����̐F�Ƒ����ݒ��ύX���܂��B<br>
+' ## 色変更サブルーチン
+' このサブルーチンは、指定された範囲内の特定の文字列の色と太字設定を変更します。<br>
 ' <pre><code>
-Sub �F�ύX(rng As Range, �F�ύX�e�L�X�g As String, �F�C���f�b�N�X As String, �����ݒ� As String)
-    Dim �|�C���^ As Integer
+Sub 色変更(rng As Range, 色変更テキスト As String, 色インデックス As String, 太字設定 As String)
+    Dim ポインタ As Integer
     
-    ' �w�肳�ꂽ�e�L�X�g�̈ʒu������
-    �|�C���^ = InStr(rng.Value, �F�ύX�e�L�X�g)
+    ' 指定されたテキストの位置を検索
+    ポインタ = InStr(rng.Value, 色変更テキスト)
     
-    ' �e�L�X�g����������胋�[�v
-    While �|�C���^ > 0
-        ' �w�肳�ꂽ�e�L�X�g�̐F��ύX
-        rng.Characters(Start:=�|�C���^, Length:=Len(�F�ύX�e�L�X�g)).Font.colorIndex = CInt(�F�C���f�b�N�X)
+    ' テキストが見つかる限りループ
+    While ポインタ > 0
+        ' 指定されたテキストの色を変更
+        rng.Characters(Start:=ポインタ, Length:=Len(色変更テキスト)).Font.colorIndex = CInt(色インデックス)
         
-        ' �����ݒ肪"B"�̏ꍇ�A�����ɂ���
-        If UCase(�����ݒ�) = "B" Then
-            rng.Characters(Start:=�|�C���^, Length:=Len(�F�ύX�e�L�X�g)).Font.Bold = True
+        ' 太字設定が"B"の場合、太字にする
+        If UCase(太字設定) = "B" Then
+            rng.Characters(Start:=ポインタ, Length:=Len(色変更テキスト)).Font.Bold = True
         End If
         
-        ' ���̈ʒu������
-        �|�C���^ = InStr(�|�C���^ + Len(�F�ύX�e�L�X�g), rng.Value, �F�ύX�e�L�X�g)
+        ' 次の位置を検索
+        ポインタ = InStr(ポインタ + Len(色変更テキスト), rng.Value, 色変更テキスト)
     Wend
 End Sub
 ' </code></pre>

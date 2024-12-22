@@ -1,7 +1,7 @@
-Attribute VB_Name = "–ÚŸì¬_‘Š‘ÎƒpƒX"
+Attribute VB_Name = "ç›®æ¬¡ä½œæˆ_ç›¸å¯¾ãƒ‘ã‚¹"
 Const magnification = 90
 
-Sub –ÚŸì¬M()
+Sub ç›®æ¬¡ä½œæˆM()
     Dim sheetCount As Integer
     Dim worksheetName As String
     Dim Worksheet As Worksheet
@@ -25,7 +25,7 @@ Sub –ÚŸì¬M()
     For i = 1 To Worksheets.count
         worksheetName = Worksheets(i).name
         
-        If Mid(worksheetName, 1, 1) = "y" Or Mid(worksheetName, 1, 1) = "š" Then
+        If Mid(worksheetName, 1, 1) = "ã€" Or Mid(worksheetName, 1, 1) = "â˜…" Then
             row_num = 1
             col_num = col_num + 1
         End If
@@ -53,9 +53,9 @@ Sub –ÚŸì¬M()
     
     FreezePanes
 
-    ' ƒY[ƒ€”{—¦‚ğƒ†[ƒU[‚É“ü—Í‚µ‚Ä‚à‚ç‚¤
+    ' ã‚ºãƒ¼ãƒ å€ç‡ã‚’ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«å…¥åŠ›ã—ã¦ã‚‚ã‚‰ã†
     Dim magnification As Integer
-    magnification = InputBox("ƒY[ƒ€”{—¦‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢i—á: 90j", "ƒY[ƒ€İ’è", 90)
+    magnification = InputBox("ã‚ºãƒ¼ãƒ å€ç‡ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼ˆä¾‹: 90ï¼‰", "ã‚ºãƒ¼ãƒ è¨­å®š", 90)
     
     For i = 1 To Worksheets.count
         Worksheets(i).Select

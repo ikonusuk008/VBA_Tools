@@ -1,5 +1,5 @@
-Attribute VB_Name = "‘S—Êæ“¾_ƒR[ƒh_ƒV[ƒgƒpƒX"
-Sub ‘S—Êæ“¾_ƒR[ƒh_ƒV[ƒgƒpƒXM()
+Attribute VB_Name = "å…¨é‡å–å¾—_ã‚³ãƒ¼ãƒ‰_ã‚·ãƒ¼ãƒˆãƒ‘ã‚¹"
+Sub å…¨é‡å–å¾—_ã‚³ãƒ¼ãƒ‰_ã‚·ãƒ¼ãƒˆãƒ‘ã‚¹M()
     Dim wsSource As Worksheet
     Dim wsOutput As Worksheet
     Dim lastRow As Long
@@ -18,25 +18,25 @@ Sub ‘S—Êæ“¾_ƒR[ƒh_ƒV[ƒgƒpƒXM()
     Dim lineNumber As Long
     Dim overallLineNumber As Long
 
-    ' “Á’è‚ÌƒuƒbƒN‚ğİ’èi‚±‚±‚Å‚ÍAŒ»İƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ğ‘ÎÛ‚Æ‚µ‚Ü‚·j
+    ' ç‰¹å®šã®ãƒ–ãƒƒã‚¯ã‚’è¨­å®šï¼ˆã“ã“ã§ã¯ã€ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ã‚’å¯¾è±¡ã¨ã—ã¾ã™ï¼‰
     Set targetWorkbook = Application.ActiveWorkbook
 
-    ' ƒeƒXƒgƒtƒ‰ƒO‚ğİ’è
-    testFlag = True ' ƒeƒXƒgƒtƒ‰ƒO‚ªTrue‚Ìê‡A2s‚¾‚¯ˆ—
+    ' ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°ã‚’è¨­å®š
+    testFlag = True ' ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°ãŒTrueã®å ´åˆã€2è¡Œã ã‘å‡¦ç†
 
-    ' o—ÍƒV[ƒg‚ğì¬‚Ü‚½‚Íæ“¾
+    ' å‡ºåŠ›ã‚·ãƒ¼ãƒˆã‚’ä½œæˆã¾ãŸã¯å–å¾—
     On Error Resume Next
-    Set wsOutput = targetWorkbook.sheets("VBA‘S—Ê")
+    Set wsOutput = targetWorkbook.sheets("VBAå…¨é‡")
     On Error GoTo 0
     If wsOutput Is Nothing Then
         Set wsOutput = targetWorkbook.sheets.Add(After:=targetWorkbook.sheets(targetWorkbook.sheets.count))
-        wsOutput.name = "VBA‘S—Ê"
+        wsOutput.name = "VBAå…¨é‡"
     End If
     
-    ' 2s–ÚˆÈ~‚ğƒNƒŠƒAiƒtƒBƒ‹ƒ^‚ğˆÛj
+    ' 2è¡Œç›®ä»¥é™ã‚’ã‚¯ãƒªã‚¢ï¼ˆãƒ•ã‚£ãƒ«ã‚¿ã‚’ç¶­æŒï¼‰
     wsOutput.Rows("2:" & wsOutput.Rows.count).ClearContents
     
-    ' ƒJƒ‰ƒ€–¼‚ğİ’èiŠù‚É‚ ‚éê‡‚Å‚àİ’è‚µ’¼‚µ‚Ü‚·j
+    ' ã‚«ãƒ©ãƒ åã‚’è¨­å®šï¼ˆæ—¢ã«ã‚ã‚‹å ´åˆã§ã‚‚è¨­å®šã—ç›´ã—ã¾ã™ï¼‰
     wsOutput.Cells(1, "A").Value = "path filename"
     wsOutput.Cells(1, "B").Value = "filename"
     wsOutput.Cells(1, "C").Value = "last modified"
@@ -45,80 +45,80 @@ Sub ‘S—Êæ“¾_ƒR[ƒh_ƒV[ƒgƒpƒXM()
     wsOutput.Cells(1, "F").Value = "line number"
     wsOutput.Cells(1, "G").Value = "overall line number"
 
-    ' ƒtƒBƒ‹ƒ^İ’èiƒtƒBƒ‹ƒ^‚ğˆÛj
+    ' ãƒ•ã‚£ãƒ«ã‚¿è¨­å®šï¼ˆãƒ•ã‚£ãƒ«ã‚¿ã‚’ç¶­æŒï¼‰
     If wsOutput.AutoFilterMode Then
         wsOutput.AutoFilterMode = False
     End If
     wsOutput.Rows(1).AutoFilter
 
-    ' 1s–Ú‚ğŒÅ’è
+    ' 1è¡Œç›®ã‚’å›ºå®š
     wsOutput.Activate
     wsOutput.Range("A2").Select
     ActiveWindow.FreezePanes = True
 
-    ' ƒtƒ@ƒCƒ‹ƒpƒX‚ª‹LÚ‚³‚ê‚½ƒV[ƒg‚ğw’è
+    ' ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ãŒè¨˜è¼‰ã•ã‚ŒãŸã‚·ãƒ¼ãƒˆã‚’æŒ‡å®š
     Set wsSource = targetWorkbook.sheets("VBA_path")
     
-    ' ÅIs‚ğæ“¾
+    ' æœ€çµ‚è¡Œã‚’å–å¾—
     lastRow = wsSource.Cells(wsSource.Rows.count, "B").End(xlUp).row
     
-    ' ƒeƒXƒgƒtƒ‰ƒO‚ªTrue‚È‚çAˆ—s”‚ğ§ŒÀ
+    ' ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°ãŒTrueãªã‚‰ã€å‡¦ç†è¡Œæ•°ã‚’åˆ¶é™
     If testFlag Then
-        lastRow = WorksheetFunction.Min(lastRow, 2 + 1) ' ƒwƒbƒ_s‚ª‚ ‚é‚½‚ßA2s‚Ìê‡‚ÍÀ¿3s–Ú‚Ü‚Åˆ—
+        lastRow = WorksheetFunction.Min(lastRow, 2 + 1) ' ãƒ˜ãƒƒãƒ€è¡ŒãŒã‚ã‚‹ãŸã‚ã€2è¡Œã®å ´åˆã¯å®Ÿè³ª3è¡Œç›®ã¾ã§å‡¦ç†
     End If
     
-    ' ‰Šú‰»
-    outputRow = 2 ' ƒJƒ‰ƒ€–¼‚Ì‰º‚©‚ço—Í
-    overallLineNumber = 1 ' ‘S‘Ì‚Ì˜A”Ô‚ğ‰Šú‰»
+    ' åˆæœŸåŒ–
+    outputRow = 2 ' ã‚«ãƒ©ãƒ åã®ä¸‹ã‹ã‚‰å‡ºåŠ›
+    overallLineNumber = 1 ' å…¨ä½“ã®é€£ç•ªã‚’åˆæœŸåŒ–
 
-    ' 2s–Ú‚©‚çƒ‹[ƒv
+    ' 2è¡Œç›®ã‹ã‚‰ãƒ«ãƒ¼ãƒ—
     For i = 2 To lastRow
-        filePath = wsSource.Cells(i, "B").Value ' B—ñ‚©‚çƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾
-        fileName = Mid(filePath, InStrRev(filePath, "\") + 1) ' ƒtƒ@ƒCƒ‹–¼‚ğæ“¾
-        lastModified = FileDateTime(filePath) ' ƒtƒ@ƒCƒ‹‚ÌÅIXV“ú‚ğæ“¾
-        Debug.Print "Processing file path: " & filePath ' ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒfƒoƒbƒOo—Í
+        filePath = wsSource.Cells(i, "B").Value ' Båˆ—ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
+        fileName = Mid(filePath, InStrRev(filePath, "\") + 1) ' ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
+        lastModified = FileDateTime(filePath) ' ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ€çµ‚æ›´æ–°æ—¥ã‚’å–å¾—
+        Debug.Print "Processing file path: " & filePath ' ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 
         If filePath <> "" And Right(filePath, 4) = ".bas" Then
-            ' ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
             fileNum = FreeFile
             On Error Resume Next
             Open filePath For Input As fileNum
             If Err.Number <> 0 Then
-                MsgBox "ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½: " & filePath, vbExclamation
+                MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ: " & filePath, vbExclamation
                 On Error GoTo 0
                 Close fileNum
                 GoTo NextFile
             End If
             On Error GoTo 0
             
-            ' ‰Šú‰»
+            ' åˆæœŸåŒ–
             inSubroutine = False
             subroutineName = ""
             lineNumber = 1
 
-            ' ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğ1s‚¸‚Âo—Í
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’1è¡Œãšã¤å‡ºåŠ›
             Do Until EOF(fileNum)
                 Line Input #fileNum, lineData
 
-                ' ƒTƒuƒ‹[ƒ`ƒ“‚ÌŠJn‚ğŒŸo
+                ' ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ã®é–‹å§‹ã‚’æ¤œå‡º
                 If InStr(1, lineData, "Sub ", vbTextCompare) > 0 Or InStr(1, lineData, "Function ", vbTextCompare) > 0 Then
                     subroutineName = Trim(Split(lineData, " ")(1))
                     inSubroutine = True
                 End If
 
-                ' ƒTƒuƒ‹[ƒ`ƒ“‚ÌI—¹‚ğŒŸo
+                ' ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ã®çµ‚äº†ã‚’æ¤œå‡º
                 If inSubroutine And (InStr(1, lineData, "End Sub", vbTextCompare) > 0 Or InStr(1, lineData, "End Function", vbTextCompare) > 0) Then
                     inSubroutine = False
                 End If
 
-                ' o—Í
-                wsOutput.Cells(outputRow, "A").Value = filePath ' A—ñ‚Éƒtƒ‹ƒpƒX‚ğo—Í
-                wsOutput.Cells(outputRow, "B").Value = fileName ' B—ñ‚Éƒtƒ@ƒCƒ‹–¼‚ğo—Í
-                wsOutput.Cells(outputRow, "C").Value = lastModified ' C—ñ‚ÉÅIXV“ú‚ğo—Í
-                wsOutput.Cells(outputRow, "D").Value = lineData ' D—ñ‚É1s‚¸‚ÂƒR[ƒh‚ğo—Í
-                wsOutput.Cells(outputRow, "E").Value = subroutineName ' E—ñ‚ÉƒTƒuƒ‹[ƒ`ƒ“–¼‚ğo—ÍiŠY“–s‚ªƒTƒuƒ‹[ƒ`ƒ““à‚Ìê‡j
-                wsOutput.Cells(outputRow, "F").Value = lineNumber ' F—ñ‚Éƒtƒ@ƒCƒ‹“à‚Ì˜A”Ô‚ğo—Í
-                wsOutput.Cells(outputRow, "G").Value = overallLineNumber ' G—ñ‚É‘S‘Ì‚Ì˜A”Ô‚ğo—Í
+                ' å‡ºåŠ›
+                wsOutput.Cells(outputRow, "A").Value = filePath ' Aåˆ—ã«ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å‡ºåŠ›
+                wsOutput.Cells(outputRow, "B").Value = fileName ' Båˆ—ã«ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å‡ºåŠ›
+                wsOutput.Cells(outputRow, "C").Value = lastModified ' Cåˆ—ã«æœ€çµ‚æ›´æ–°æ—¥ã‚’å‡ºåŠ›
+                wsOutput.Cells(outputRow, "D").Value = lineData ' Dåˆ—ã«1è¡Œãšã¤ã‚³ãƒ¼ãƒ‰ã‚’å‡ºåŠ›
+                wsOutput.Cells(outputRow, "E").Value = subroutineName ' Eåˆ—ã«ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³åã‚’å‡ºåŠ›ï¼ˆè©²å½“è¡ŒãŒã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³å†…ã®å ´åˆï¼‰
+                wsOutput.Cells(outputRow, "F").Value = lineNumber ' Fåˆ—ã«ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®é€£ç•ªã‚’å‡ºåŠ›
+                wsOutput.Cells(outputRow, "G").Value = overallLineNumber ' Gåˆ—ã«å…¨ä½“ã®é€£ç•ªã‚’å‡ºåŠ›
 
                 outputRow = outputRow + 1
                 lineNumber = lineNumber + 1
@@ -128,10 +128,10 @@ Sub ‘S—Êæ“¾_ƒR[ƒh_ƒV[ƒgƒpƒXM()
             
             Debug.Print "File content output complete for: " & filePath
         Else
-            Debug.Print "Skipping file: " & filePath ' ğŒ‚ğ–‚½‚³‚È‚¢ƒtƒ@ƒCƒ‹‚ÍƒXƒLƒbƒv
+            Debug.Print "Skipping file: " & filePath ' æ¡ä»¶ã‚’æº€ãŸã•ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚¹ã‚­ãƒƒãƒ—
         End If
 NextFile:
     Next i
     
-    MsgBox "ˆ—‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation
+    MsgBox "å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation
 End Sub

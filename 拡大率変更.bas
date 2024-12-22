@@ -1,9 +1,9 @@
-Attribute VB_Name = "�g�嗦�ύX"
-Sub �g�嗦�ύXM()
+Attribute VB_Name = "拡大率変更"
+Sub 拡大率変更M()
 
     Dim buf As String
     Dim magnification As Long
-    magnification = 80 ' �f�t�H���g�̃Y�[���{��
+    magnification = 80 ' デフォルトのズーム倍率
     buf = InputBox("input size", "Sheet size setting", magnification)
 
     For i = 1 To Worksheets.count

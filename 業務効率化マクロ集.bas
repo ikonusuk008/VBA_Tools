@@ -1,98 +1,98 @@
-Attribute VB_Name = "�Ɩ��������}�N���W"
-' ���݂̃Z���̍s���폜����}�N��
+Attribute VB_Name = "業務効率化マクロ集"
+' 現在のセルの行を削除するマクロ
 Sub One_row_delete()
-    ' ���݂̃Z���̍s��I��
+    ' 現在のセルの行を選択
     ActiveCell.EntireRow.Select
-    ' �I�������s���폜
+    ' 選択した行を削除
     Rows(ActiveCell.row).Delete
 End Sub
 
-' ���݂̃Z���̍s�ɐV�����s��}������}�N��
+' 現在のセルの行に新しい行を挿入するマクロ
 Sub One_row_insert()
-    ' ���݂̃Z���̍s��I��
+    ' 現在のセルの行を選択
     ActiveCell.EntireRow.Select
-    ' �I�������s�ɐV�����s��}��
+    ' 選択した行に新しい行を挿入
     Rows(ActiveCell.row).Insert
 End Sub
 
-' ���݂̃Z���̗���폜����}�N��
+' 現在のセルの列を削除するマクロ
 Sub One_Column_delete()
-    ' ���݂̃Z���̗��I��
+    ' 現在のセルの列を選択
     ActiveCell.EntireColumn.Select
-    ' �I����������폜
+    ' 選択した列を削除
     Columns(ActiveCell.Column).Delete
 End Sub
 
-' ���݂̃Z���̗�ɐV�������}������}�N��
+' 現在のセルの列に新しい列を挿入するマクロ
 Sub One_Column_insert()
-    ' ���݂̃Z���̗��I��
+    ' 現在のセルの列を選択
     ActiveCell.EntireColumn.Select
-    ' �I��������ɐV�������}��
+    ' 選択した列に新しい列を挿入
     Columns(ActiveCell.Column).Insert
 End Sub
 
-' ���ׂĂ̍s�̍�����������������}�N��
+' すべての行の高さを自動調整するマクロ
 Sub Automatic_row_height_adjustment()
-    ' ���ׂẴZ����I��
+    ' すべてのセルを選択
     Cells.Select
-    ' ���ׂĂ̍s�̍�������������
+    ' すべての行の高さを自動調整
     Cells.EntireRow.AutoFit
-    ' �Z��A1��I���i�I����Ԃ��������邽�߁j
+    ' セルA1を選択（選択状態を解除するため）
     Range("A1").Select
 End Sub
 
-' �t�H���g�Ɠ��t�񕝂̒������s���}�N��
-Sub �J�����̏k�ڒ���()
-    ' ���ׂẴZ����I��
+' フォントと日付列幅の調整を行うマクロ
+Sub カラムの縮尺調整()
+    ' すべてのセルを選択
     Cells.Select
-    ' �񕝂�ݒ�
+    ' 列幅を設定
     Selection.ColumnWidth = 8.29
-    ' ���ׂĂ̗�̕�����������
+    ' すべての列の幅を自動調整
     Cells.EntireColumn.AutoFit
-    ' �Z��A1��I���i�I����Ԃ��������邽�߁j
+    ' セルA1を選択（選択状態を解除するため）
     Range("A1").Select
 End Sub
 
-' ���݂̃Z���̉��s�Ƌ󔒂��폜����}�N��
+' 現在のセルの改行と空白を削除するマクロ
 Sub Eliminate_line_breaks_and_blanks_in_the_active_Cell()
-    ' ���݂̃Z���̒l���擾
+    ' 現在のセルの値を取得
     a = ActiveCell.Value
-    ' ���s���폜
+    ' 改行を削除
     b = Replace(a, vbLf, "")
-    ' �󔒂��폜
+    ' 空白を削除
     b = Replace(b, " ", "")
-    ' �C�������l�����݂̃Z���ɐݒ�
+    ' 修正した値を現在のセルに設定
     ActiveCell.Value = b
 End Sub
 
-' ���݂̃Z���̉��̃Z���̒l���R�s�[����}�N��
+' 現在のセルの下のセルの値をコピーするマクロ
 Sub Copy_cells_below_active_cell()
-    ' ���݂̃Z���ɉ��̃Z���̒l��ݒ�
+    ' 現在のセルに下のセルの値を設定
     ActiveCell.Cells(1, 1).Value = ActiveCell.Cells(2, 1).Value
 End Sub
 
-' ���ׂẴV�[�g�����Z���ɕ\������}�N��
-Sub �V�[�g���擾�G�N�Z���֐�()
+' すべてのシート名をセルに表示するマクロ
+Sub シート名取得エクセル関数()
     For i1 = 1 To Worksheets.count - 1
-        ' �e�V�[�g��I��
+        ' 各シートを選択
         Worksheets.Select (i1)
-        ' B2�Z����I��
+        ' B2セルを選択
         Range("B2").Select
-        ' B2�Z�����N���A
+        ' B2セルをクリア
         ActiveCell.FormulaR1C1 = ""
-        ' A1�Z���ɃV�[�g����ݒ�
+        ' A1セルにシート名を設定
         Range("A1").Select
         ActiveCell.FormulaR1C1 = "=RIGHT(CELL(""filename"",RC),LEN(CELL(""filename"",RC))-FIND(""]"",CELL(""filename"",RC)))"
-        ' A2�Z����I������1�s�ڂ̍�����ݒ�
+        ' A2セルを選択して1行目の高さを設定
         Range("A2").Select
         Rows("1:1").RowHeight = 23.25
     Next i1
 End Sub
 
-' ���ׂẴV�[�g�����f�o�b�O�o�͂���}�N��
-Sub �V�[�g���̊m�F()
+' すべてのシート名をデバッグ出力するマクロ
+Sub シート名の確認()
     For i1 = 1 To Worksheets.count - 1
-        ' �e�V�[�g�̖��O���f�o�b�O�o��
+        ' 各シートの名前をデバッグ出力
         Debug.Print Worksheets(i1).name
     Next i1
 End Sub

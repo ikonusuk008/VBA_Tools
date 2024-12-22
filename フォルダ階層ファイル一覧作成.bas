@@ -1,5 +1,5 @@
-Attribute VB_Name = "ƒtƒHƒ‹ƒ_ŠK‘wƒtƒ@ƒCƒ‹ˆê——ì¬"
-Sub ƒtƒHƒ‹ƒ_ŠK‘wƒtƒ@ƒCƒ‹ˆê——ì¬M()
+Attribute VB_Name = "ãƒ•ã‚©ãƒ«ãƒ€éšå±¤ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ä½œæˆ"
+Sub ãƒ•ã‚©ãƒ«ãƒ€éšå±¤ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ä½œæˆM()
 
     Dim mainFolder As String
     Dim subFolder1 As Object
@@ -12,15 +12,15 @@ Sub ƒtƒHƒ‹ƒ_ŠK‘wƒtƒ@ƒCƒ‹ˆê——ì¬M()
     Dim excelFileCount As Long, textFileCount As Long, csvFileCount As Long, grandchildFileCount As Long
     Dim excelFiles() As String, textFiles() As String, csvFiles() As String, grandchildFiles() As String
     
-    ' ƒƒCƒ“ƒtƒHƒ‹ƒ_‚ÌƒpƒX‚ğw’è
-    mainFolder = "C:\path\to\your\folder" ' ƒtƒHƒ‹ƒ_‚ÌƒpƒX‚ğw’è
+    ' ãƒ¡ã‚¤ãƒ³ãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ‘ã‚¹ã‚’æŒ‡å®š
+    mainFolder = "C:\path\to\your\folder" ' ãƒ•ã‚©ãƒ«ãƒ€ã®ãƒ‘ã‚¹ã‚’æŒ‡å®š
     
-    ' ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€ƒIƒuƒWƒFƒNƒg‚ğì¬
+    ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
     Set fileSystem = CreateObject("Scripting.FileSystemObject")
     
-    ' ‰Šúİ’è
-    currentRow = 2 ' •\‚Ì‘‚«‚İŠJnsi1s–Ú‚Éƒwƒbƒ_[j
+    ' åˆæœŸè¨­å®š
+    currentRow = 2 ' è¡¨ã®æ›¸ãè¾¼ã¿é–‹å§‹è¡Œï¼ˆ1è¡Œç›®ã«ãƒ˜ãƒƒãƒ€ãƒ¼ï¼‰
     
-    ' ƒTƒuƒtƒHƒ‹ƒ_2‚¨‚æ‚Ñ‚»‚Ì”z‰º‚ÌƒtƒHƒ‹ƒ_iƒTƒuƒtƒHƒ‹ƒ_3j“à‚ÌÅ‘åƒtƒ@ƒCƒ‹”‚ğæ“¾
+    ' ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€2ãŠã‚ˆã³ãã®é…ä¸‹ã®ãƒ•ã‚©ãƒ«ãƒ€ï¼ˆã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€3ï¼‰å†…ã®æœ€å¤§ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’å–å¾—
     maxExcelCount = 0
  

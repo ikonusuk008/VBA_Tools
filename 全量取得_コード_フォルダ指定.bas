@@ -1,5 +1,5 @@
-Attribute VB_Name = "‘S—Êæ“¾_ƒR[ƒh_ƒtƒHƒ‹ƒ_w’è"
-Sub ‘S—Êæ“¾_ƒR[ƒh_ƒtƒHƒ‹ƒ_w’èM()
+Attribute VB_Name = "å…¨é‡å–å¾—_ã‚³ãƒ¼ãƒ‰_ãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®š"
+Sub å…¨é‡å–å¾—_ã‚³ãƒ¼ãƒ‰_ãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®šM()
     Dim wsOutput As Worksheet
     Dim folderPath As String
     Dim fileName As String
@@ -15,18 +15,18 @@ Sub ‘S—Êæ“¾_ƒR[ƒh_ƒtƒHƒ‹ƒ_w’èM()
     Dim overallLineNumber As Long
     Dim targetWorkbook As Workbook
 
-    ' “Á’è‚ÌƒuƒbƒN‚ğİ’èi‚±‚±‚Å‚ÍAŒ»İƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ğ‘ÎÛ‚Æ‚µ‚Ü‚·j
+    ' ç‰¹å®šã®ãƒ–ãƒƒã‚¯ã‚’è¨­å®šï¼ˆã“ã“ã§ã¯ã€ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ã‚’å¯¾è±¡ã¨ã—ã¾ã™ï¼‰
     Set targetWorkbook = Application.ActiveWorkbook
 
-    ' ƒtƒHƒ‹ƒ_ƒpƒX‚ğw’è
-    folderPath = InputBox("ƒtƒHƒ‹ƒ_ƒpƒX‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢:", "ƒtƒHƒ‹ƒ_‘I‘ğ")
+    ' ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹ã‚’æŒ‡å®š
+    folderPath = InputBox("ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„:", "ãƒ•ã‚©ãƒ«ãƒ€é¸æŠ")
     If Right(folderPath, 1) <> "\" Then
         folderPath = folderPath & "\"
     End If
 
-    ' o—ÍƒV[ƒg‚ğì¬‚Ü‚½‚Íæ“¾
+    ' å‡ºåŠ›ã‚·ãƒ¼ãƒˆã‚’ä½œæˆã¾ãŸã¯å–å¾—
     On Error Resume Next
-    Set wsOutput = targetWorkbook.sheets("VBA‘S—Ê")
+    Set wsOutput = targetWorkbook.sheets("VBAå…¨é‡")
     On Error GoTo 0
     If wsOutput Is Nothing Then
         Se

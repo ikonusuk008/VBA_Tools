@@ -1,4 +1,4 @@
-Attribute VB_Name = "ƒGƒNƒZƒ‹ƒeƒLƒXƒgæ“¾"
+Attribute VB_Name = "ã‚¨ã‚¯ã‚»ãƒ«ãƒ†ã‚­ã‚¹ãƒˆå–å¾—"
 Sub ExtractTextFromExcelFiles()
     Dim ws As Worksheet
     Dim lastRow As Long
@@ -11,34 +11,34 @@ Sub ExtractTextFromExcelFiles()
     Dim cell As Range
     Dim columnLetter As String
     
-    ' “ü—ÍƒV[ƒg‚Æo—ÍƒV[ƒg‚ğİ’è
+    ' å…¥åŠ›ã‚·ãƒ¼ãƒˆã¨å‡ºåŠ›ã‚·ãƒ¼ãƒˆã‚’è¨­å®š
     Set ws = sheets("IN")
     Set outputWs = Worksheets.Add
     outputWs.name = "ExtractedText"
     outputRow = 1
     
-    ' ƒwƒbƒ_[‚ğ’Ç‰Á
-    outputWs.Cells(outputRow, 1).Value = "ƒpƒX"
-    outputWs.Cells(outputRow, 2).Value = "ƒV[ƒg–¼"
-    outputWs.Cells(outputRow, 3).Value = "—ñ"
-    outputWs.Cells(outputRow, 4).Value = "ƒZƒ‹ƒeƒLƒXƒg"
+    ' ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è¿½åŠ 
+    outputWs.Cells(outputRow, 1).Value = "ãƒ‘ã‚¹"
+    outputWs.Cells(outputRow, 2).Value = "ã‚·ãƒ¼ãƒˆå"
+    outputWs.Cells(outputRow, 3).Value = "åˆ—"
+    outputWs.Cells(outputRow, 4).Value = "ã‚»ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ"
     outputRow = outputRow + 1
     
-    ' ƒtƒ@ƒCƒ‹ƒpƒX‚Ì‚ ‚éÅŒã‚Ìs‚ğæ“¾
+    ' ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã®ã‚ã‚‹æœ€å¾Œã®è¡Œã‚’å–å¾—
     lastRow = ws.Cells(ws.Rows.count, "A").End(xlUp).row
     
-    ' Šeƒtƒ@ƒCƒ‹‚ğˆ—
+    ' å„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡¦ç†
     For i = 2 To lastRow
         filePath = ws.Cells(i, 1).Value
         
-        ' ƒGƒNƒZƒ‹ƒtƒ@ƒCƒ‹‚Ì‚İ‚ğˆ—
+        ' ã‚¨ã‚¯ã‚»ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿ã‚’å‡¦ç†
         If LCase(Right(filePath, 4)) = ".xls" Or LCase(Right(filePath, 5)) = ".xlsx" Then
-            ' ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
             Set sourceWb = Workbooks.Open(filePath, ReadOnly:=True)
             
-            ' ŠeƒV[ƒg‚ğˆ—
+            ' å„ã‚·ãƒ¼ãƒˆã‚’å‡¦ç†
             For Each sourceWs In sourceWb.Worksheets
-                ' ŠeƒZƒ‹‚ğˆ—
+                ' å„ã‚»ãƒ«ã‚’å‡¦ç†
                 For Each cell In sourceWs.UsedRange
                     If cell.Value <> "" Then
                         columnLetter = Split(cell.Address, "$")(1)
@@ -51,13 +51,13 @@ Sub ExtractTextFromExcelFiles()
                 Next cell
             Next sourceWs
             
-            ' ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+            ' ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
             sourceWb.Close SaveChanges:=False
         End If
     Next i
     
-    ' —ñ•‚Ì©“®’²®
+    ' åˆ—å¹…ã®è‡ªå‹•èª¿æ•´
     outputWs.Columns("A:D").AutoFit
     
-    MsgBox "ƒeƒLƒXƒg’Šo‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation
+    MsgBox "ãƒ†ã‚­ã‚¹ãƒˆæŠ½å‡ºãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation
 End Sub
