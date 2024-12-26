@@ -1,4 +1,3 @@
-Attribute VB_Name = "全量取得_コード_シートパス"
 Sub 全量取得_コード_シートパスM()
     Dim wsSource As Worksheet
     Dim wsOutput As Worksheet
@@ -7,8 +6,6 @@ Sub 全量取得_コード_シートパスM()
     Dim fileName As String
     Dim lastModified As Date
     Dim i As Long
-    Dim fileContent As String
-    Dim fileNum As Integer
     Dim testFlag As Boolean
     Dim lineData As String
     Dim outputRow As Long
@@ -17,24 +14,27 @@ Sub 全量取得_コード_シートパスM()
     Dim inSubroutine As Boolean
     Dim lineNumber As Long
     Dim overallLineNumber As Long
+    
+    ' ADODB.Stream 用（遅延バインディング）
+    Dim stm As Object
 
     ' 特定のブックを設定（ここでは、現在アクティブなブックを対象とします）
     Set targetWorkbook = Application.ActiveWorkbook
 
     ' テストフラグを設定
-    testFlag = True ' テストフラグがTrueの場合、2行だけ処理
+    testFlag = True ' True の場合、2行だけ処理
 
     ' 出力シートを作成または取得
     On Error Resume Next
-    Set wsOutput = targetWorkbook.sheets("VBA全量")
+    Set wsOutput = targetWorkbook.Sheets("VBA全量")
     On Error GoTo 0
     If wsOutput Is Nothing Then
-        Set wsOutput = targetWorkbook.sheets.Add(After:=targetWorkbook.sheets(targetWorkbook.sheets.count))
-        wsOutput.name = "VBA全量"
+        Set wsOutput = targetWorkbook.Sheets.Add(After:=targetWorkbook.Sheets(targetWorkbook.Sheets.Count))
+        wsOutput.Name = "VBA全量"
     End If
     
     ' 2行目以降をクリア（フィルタを維持）
-    wsOutput.Rows("2:" & wsOutput.Rows.count).ClearContents
+    wsOutput.Rows("2:" & wsOutput.Rows.Count).ClearContents
     
     ' カラム名を設定（既にある場合でも設定し直します）
     wsOutput.Cells(1, "A").Value = "path filename"
@@ -57,50 +57,57 @@ Sub 全量取得_コード_シートパスM()
     ActiveWindow.FreezePanes = True
 
     ' ファイルパスが記載されたシートを指定
-    Set wsSource = targetWorkbook.sheets("VBA_path")
+    Set wsSource = targetWorkbook.Sheets("VBA_path")
     
     ' 最終行を取得
-    lastRow = wsSource.Cells(wsSource.Rows.count, "B").End(xlUp).row
+    lastRow = wsSource.Cells(wsSource.Rows.Count, "B").End(xlUp).Row
     
     ' テストフラグがTrueなら、処理行数を制限
     If testFlag Then
-        lastRow = WorksheetFunction.Min(lastRow, 2 + 1) ' ヘッダ行があるため、2行の場合は実質3行目まで処理
+        ' ヘッダ行が1行あるため、2行のみ処理するなら行数= 1(ヘッダ) + 2(実際に読む行)
+        lastRow = WorksheetFunction.Min(lastRow, 3)
     End If
     
     ' 初期化
-    outputRow = 2 ' カラム名の下から出力
-    overallLineNumber = 1 ' 全体の連番を初期化
+    outputRow = 2           ' カラム名の下から出力
+    overallLineNumber = 1   ' 全体の連番を初期化
 
     ' 2行目からループ
     For i = 2 To lastRow
         filePath = wsSource.Cells(i, "B").Value ' B列からファイルパスを取得
         fileName = Mid(filePath, InStrRev(filePath, "\") + 1) ' ファイル名を取得
-        lastModified = FileDateTime(filePath) ' ファイルの最終更新日を取得
-        Debug.Print "Processing file path: " & filePath ' ファイルパスをデバッグ出力
-
         If filePath <> "" And Right(filePath, 4) = ".bas" Then
-            ' ファイルを読み込む
-            fileNum = FreeFile
+            ' ファイルの最終更新日を取得
             On Error Resume Next
-            Open filePath For Input As fileNum
+            lastModified = FileDateTime(filePath)
             If Err.Number <> 0 Then
-                MsgBox "ファイルを開けませんでした: " & filePath, vbExclamation
-                On Error GoTo 0
-                Close fileNum
+                Debug.Print "ファイルが見つからない可能性があります: " & filePath
+                Err.Clear
                 GoTo NextFile
             End If
             On Error GoTo 0
             
+            Debug.Print "Processing file path: " & filePath ' ファイルパスをデバッグ出力
+
+            '===== ここから ADODB.Stream で UTF-8 読み込み =====
+            Set stm = CreateObject("ADODB.Stream")
+            With stm
+                .Type = 2         ' adTypeText
+                .Charset = "UTF-8"
+                .Open
+                .LoadFromFile filePath
+            End With
+
             ' 初期化
             inSubroutine = False
             subroutineName = ""
             lineNumber = 1
+            
+            ' ファイルを最後まで 1行ずつ読み込む
+            Do Until stm.EOS
+                lineData = stm.ReadText(-2)  ' -2: 一行ずつ読み込み
 
-            ' ファイルの内容を1行ずつ出力
-            Do Until EOF(fileNum)
-                Line Input #fileNum, lineData
-
-                ' サブルーチンの開始を検出
+                ' サブルーチンや関数の開始を検出
                 If InStr(1, lineData, "Sub ", vbTextCompare) > 0 Or InStr(1, lineData, "Function ", vbTextCompare) > 0 Then
                     subroutineName = Trim(Split(lineData, " ")(1))
                     inSubroutine = True
@@ -112,23 +119,26 @@ Sub 全量取得_コード_シートパスM()
                 End If
 
                 ' 出力
-                wsOutput.Cells(outputRow, "A").Value = filePath ' A列にフルパスを出力
-                wsOutput.Cells(outputRow, "B").Value = fileName ' B列にファイル名を出力
-                wsOutput.Cells(outputRow, "C").Value = lastModified ' C列に最終更新日を出力
-                wsOutput.Cells(outputRow, "D").Value = lineData ' D列に1行ずつコードを出力
-                wsOutput.Cells(outputRow, "E").Value = subroutineName ' E列にサブルーチン名を出力（該当行がサブルーチン内の場合）
-                wsOutput.Cells(outputRow, "F").Value = lineNumber ' F列にファイル内の連番を出力
-                wsOutput.Cells(outputRow, "G").Value = overallLineNumber ' G列に全体の連番を出力
+                wsOutput.Cells(outputRow, "A").Value = filePath          ' フルパス
+                wsOutput.Cells(outputRow, "B").Value = fileName          ' ファイル名
+                wsOutput.Cells(outputRow, "C").Value = lastModified      ' 最終更新日
+                wsOutput.Cells(outputRow, "D").Value = lineData          ' 1行分のコード
+                wsOutput.Cells(outputRow, "E").Value = subroutineName    ' サブルーチン名
+                wsOutput.Cells(outputRow, "F").Value = lineNumber        ' ファイル内の連番
+                wsOutput.Cells(outputRow, "G").Value = overallLineNumber ' 全体の連番
 
                 outputRow = outputRow + 1
                 lineNumber = lineNumber + 1
                 overallLineNumber = overallLineNumber + 1
             Loop
-            Close fileNum
+
+            ' ストリームをクローズ
+            stm.Close
+            Set stm = Nothing
             
             Debug.Print "File content output complete for: " & filePath
         Else
-            Debug.Print "Skipping file: " & filePath ' 条件を満たさないファイルはスキップ
+            Debug.Print "Skipping file: " & filePath ' 条件を満たさない場合はスキップ
         End If
 NextFile:
     Next i
