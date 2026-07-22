@@ -73,9 +73,9 @@ End Sub
 
 ' すべてのシート名をセルに表示するマクロ
 Sub シート名取得エクセル関数()
-    For i1 = 1 To Worksheets.count - 1
+    For i1 = 1 To Worksheets.count
         ' 各シートを選択
-        Worksheets.Select (i1)
+        Worksheets(i1).Select
         ' B2セルを選択
         Range("B2").Select
         ' B2セルをクリア
@@ -91,7 +91,7 @@ End Sub
 
 ' すべてのシート名をデバッグ出力するマクロ
 Sub シート名の確認()
-    For i1 = 1 To Worksheets.count - 1
+    For i1 = 1 To Worksheets.count
         ' 各シートの名前をデバッグ出力
         Debug.Print Worksheets(i1).name
     Next i1

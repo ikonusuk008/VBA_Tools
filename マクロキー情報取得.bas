@@ -1,10 +1,10 @@
 Attribute VB_Name = "マクロキー情報取得"
 Sub マクロキー情報取得M()
-    ' シート「キー」を選択
+    ' シート「キー一覧」を選択
     On Error Resume Next
     sheets("キー一覧").Select
     If Err.Number <> 0 Then
-        MsgBox "シート「キー」が見つかりません。シート名を確認してください。", vbCritical
+        MsgBox "シート「キー一覧」が見つかりません。シート名を確認してください。", vbCritical
         Exit Sub
     End If
     On Error GoTo 0

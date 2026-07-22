@@ -18,7 +18,7 @@ Sub Excelファイルを結合M()
     Set outputWs = outputWb.sheets("Sheet1") ' 出力先のシートを指定
     
     ' サブフォルダ探索も再帰的に処理するために、メインフォルダから開始
-    Call ProcessFolderRecursively(folderPath, outputWs)
+    Call フォルダを再帰的に処理(folderPath, outputWs)
     
     MsgBox "データの結合が完了しました。", vbInformation
 End Sub
@@ -35,11 +35,11 @@ Sub フォルダを再帰的に処理(folderPath As String, outputWs As Workshee
 
 
     ' フォルダ内のExcelファイルを処理
-    Call ProcessFilesInFolder(Folder.path, outputWs)
+    Call フォルダ内のファイルを処理(Folder.path, outputWs)
 
     ' サブフォルダを再帰的に処理
     For Each SubFolder In Folder.SubFolders
-        Call ProcessFolderRecursively(SubFolder.path, outputWs)
+        Call フォルダを再帰的に処理(SubFolder.path, outputWs)
     Next SubFolder
 End Sub
 
@@ -60,7 +60,8 @@ Sub フォルダ内のファイルを処理(folderPath As String, outputWs As Wo
             ' ファイルを開く
             Set wb = Workbooks.Open(folderPath & "\" & fileName)
             sheetExists = False
-            
+            Set ws = Nothing ' 前ファイルのシート参照が残らないようにクリア
+
             ' "AAA" という名前のシートが存在するかを確認
             On Error Resume Next
             Set ws = wb.sheets("AAA")

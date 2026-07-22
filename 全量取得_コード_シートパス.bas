@@ -22,7 +22,7 @@ Sub 全量取得_コード_シートパスM()
     Set targetWorkbook = Application.ActiveWorkbook
 
     ' テストフラグを設定
-    testFlag = True ' True の場合、2行だけ処理
+    testFlag = False ' True の場合、2行だけ処理
 
     ' 出力シートを作成または取得
     On Error Resume Next
